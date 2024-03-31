@@ -1,6 +1,7 @@
 package br.com.pwlimaverde.audio_recorder_vt_plugin
 
 import androidx.annotation.NonNull
+import br.com.pwlimaverde.sistem_configure_vt.RecorderService
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -16,6 +17,43 @@ class AudioRecorderVtPlugin: FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
 
+  private fun initService() {
+    val initIntent = Intent(this, RecorderService::class.java).apply {
+      action = RecorderService.ACTION_INIT
+    }
+    ContextCompat.startForegroundService(this, initIntent)
+  }
+
+  private fun startRecord() {
+    val startIntent = Intent(this, RecorderService::class.java).apply {
+      action = RecorderService.ACTION_START
+    }
+    ContextCompat.startForegroundService(this, startIntent)
+  }
+
+  private fun stopRecord(): String {
+    val stopIntent = Intent(this, RecorderService::class.java).apply {
+      action = RecorderService.ACTION_STOP
+    }
+    ContextCompat.startForegroundService(this, stopIntent)
+    return RecorderService.pathSave
+  }
+
+  private fun endService() {
+    val endIntent = Intent(this, RecorderService::class.java).apply {
+      action = RecorderService.ACTION_END
+    }
+    ContextCompat.startForegroundService(this, endIntent)
+  }
+
+  private fun restartService() {
+    val restartIntent = Intent(this, RecorderService::class.java).apply {
+      action = RecorderService.ACTION_RESTART
+    }
+    ContextCompat.startForegroundService(this, restartIntent)
+  }
+
+
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "audio_recorder_vt_plugin")
     channel.setMethodCallHandler(this)
@@ -24,8 +62,26 @@ class AudioRecorderVtPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+    }
+    if (call.method == "onInit") {
+      initService()
+      result.success("Method Init Service")
+    }
+    if (call.method == "onStart") {
+      startRecord()
+      result.success("Method Start Record")
+    }
+    if (call.method == "onStop") {
+      val pathSave = stopRecord()
+      result.success(pathSave)
+    }
+    if (call.method == "onEnd") {
+      endService()
+      result.success("Method End Service")
+    }
+    if (call.method == "onRestart") {
+      restartService()
+      result.success("Method Restart Service")
     }
   }
 

@@ -2,6 +2,8 @@
 import 'audio_recorder_vt_plugin_platform_interface.dart';
 
 class AudioRecorderVtPlugin {
+
+  //0.5.0
   Future<String?> getPlatformVersion() {
     return AudioRecorderVtPluginPlatform.instance.getPlatformVersion();
   }

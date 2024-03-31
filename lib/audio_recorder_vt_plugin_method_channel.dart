@@ -14,4 +14,23 @@ class MethodChannelAudioRecorderVtPlugin extends AudioRecorderVtPluginPlatform {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
+  Future<String> getPlataformInit() async {
+    final method = await methodChannel.invokeMethod('onInit');
+    return method;
+  }
+
+  Future<String> getPlataformStart() async {
+    final method = await methodChannel.invokeMethod('onStart');
+    return method;
+  }
+
+  Future<String> getPlataformStop() async {
+    final method = await methodChannel.invokeMethod('onStop');
+    return method;
+  }
+
+  Future<String> getPlataformEnd() async {
+    final method = await methodChannel.invokeMethod('onEnd');
+    return method;
+  }
 }

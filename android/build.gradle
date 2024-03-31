@@ -29,7 +29,7 @@ android {
         namespace 'br.com.pwlimaverde.audio_recorder_vt_plugin'
     }
 
-    compileSdk 34
+    compileSdk 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -46,7 +46,9 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 26
+        targetSdkVersion 33
+        multiDexEnabled true
     }
 
     dependencies {

@@ -1,6 +1,6 @@
 name: audio_recorder_vt_plugin
 description: "A new Flutter plugin project."
-version: 0.1.0
+version: 0.5.0
 homepage: "https://github.com/pwlimaverde/audio_recorder_vt_plugin"
 
 environment:

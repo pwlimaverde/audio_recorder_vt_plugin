@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.pwlimaverde.audio_recorder_vt_plugin">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -6,11 +7,17 @@
 
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <application android:allowAudioPlaybackCapture="true">
+    
+    <application android:allowAudioPlaybackCapture="true"
+        tools:targetApi="q">
+        <activity
+            android:name=".AudioRecorderVtPlugin"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".RecorderService"
@@ -20,11 +27,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
 
     </application>
 

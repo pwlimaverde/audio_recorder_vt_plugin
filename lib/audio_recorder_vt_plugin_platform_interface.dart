@@ -26,4 +26,16 @@ abstract class AudioRecorderVtPluginPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+  Future<String?> getPlataformInit() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+  Future<String?> getPlataformStart() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+  Future<String?> getPlataformStop() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+  Future<String?> getPlataformEnd() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
 }

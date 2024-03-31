@@ -5,4 +5,16 @@ class AudioRecorderVtPlugin {
   Future<String?> getPlatformVersion() {
     return AudioRecorderVtPluginPlatform.instance.getPlatformVersion();
   }
+  Future<String?> getPlataformInit() {
+    return AudioRecorderVtPluginPlatform.instance.getPlataformInit();
+  }
+  Future<String?> getPlataformStart() {
+    return AudioRecorderVtPluginPlatform.instance.getPlataformStart();
+  }
+  Future<String?> getPlataformStop() {
+    return AudioRecorderVtPluginPlatform.instance.getPlataformStop();
+  }
+  Future<String?> getPlataformEndgetPlataformEnd() {
+    return AudioRecorderVtPluginPlatform.instance.getPlataformEnd();
+  }
 }

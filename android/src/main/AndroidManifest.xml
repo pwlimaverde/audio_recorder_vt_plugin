@@ -14,14 +14,11 @@
 
         <activity
             android:name=".AudioRecorderVtPlugin"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize">
+            android:hardwareAccelerated="true">
 
             <intent-filter>
-                <action android:name="android.intent.action.CALL" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

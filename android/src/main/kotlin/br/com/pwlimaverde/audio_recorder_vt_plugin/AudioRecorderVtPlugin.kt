@@ -27,12 +27,40 @@ class AudioRecorderVtPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var activity: Activity
 
 
-
-    private fun initActivity() {
+    private fun initService() {
         val initIntent = Intent(context, RecorderService::class.java).apply {
             action = RecorderService.ACTION_INIT
         }
         ContextCompat.startForegroundService(context, initIntent)
+    }
+
+    private fun startRecord() {
+        val startIntent = Intent(context, RecorderService::class.java).apply {
+            action = RecorderService.ACTION_START
+        }
+        ContextCompat.startForegroundService(context, startIntent)
+    }
+
+    private fun stopRecord(): String {
+        val stopIntent = Intent(context, RecorderService::class.java).apply {
+            action = RecorderService.ACTION_STOP
+        }
+        ContextCompat.startForegroundService(context, stopIntent)
+        return RecorderService.pathSave
+    }
+
+    private fun endService() {
+        val endIntent = Intent(context, RecorderService::class.java).apply {
+            action = RecorderService.ACTION_END
+        }
+        ContextCompat.startForegroundService(context, endIntent)
+    }
+
+    private fun restartService() {
+        val restartIntent = Intent(context, RecorderService::class.java).apply {
+            action = RecorderService.ACTION_RESTART
+        }
+        ContextCompat.startForegroundService(context, restartIntent)
     }
 
 
@@ -44,12 +72,27 @@ class AudioRecorderVtPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         if (call.method == "getPlatformVersion") {
-            initActivity()
             result.success("Android ${android.os.Build.VERSION.RELEASE}")
         }
         if (call.method == "onInit") {
-            initActivity()
+            initService()
             result.success("Method Init Service")
+        }
+        if (call.method == "onStart") {
+            startRecord()
+            result.success("Method Start Record")
+        }
+        if (call.method == "onStop") {
+            val pathSave = stopRecord()
+            result.success(pathSave)
+        }
+        if (call.method == "onEnd") {
+            endService()
+            result.success("Method End Service")
+        }
+        if (call.method == "onRestart") {
+            restartService()
+            result.success("Method Restart Service")
         }
 
     }
@@ -63,14 +106,14 @@ class AudioRecorderVtPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onDetachedFromActivity() {
-        TODO("Not yet implemented")
+
     }
 }

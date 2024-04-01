@@ -18,11 +18,9 @@ class AudioRecorderVtPlugin : FlutterPlugin, MethodCallHandler, FlutterActivity(
     /// when the Flutter Engine is detached from the Activity
     private lateinit var channel: MethodChannel
 
-    private fun initService() {
-        val initIntent = Intent(this, RecorderService::class.java).apply {
-            action = RecorderService.ACTION_INIT
-        }
-        ContextCompat.startForegroundService(this, initIntent)
+
+    private fun initActivity() {
+
     }
 
     private fun startRecord() {
@@ -64,7 +62,7 @@ class AudioRecorderVtPlugin : FlutterPlugin, MethodCallHandler, FlutterActivity(
             result.success("Android ${android.os.Build.VERSION.RELEASE}")
         }
         if (call.method == "onInit") {
-            initService()
+            initActivity()
             result.success("Method Init Service")
         }
         if (call.method == "onStart") {

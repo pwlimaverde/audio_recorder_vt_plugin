@@ -2,7 +2,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'audio_recorder_vt_plugin_method_channel.dart';
 
-abstract class AudioRecorderVtPluginPlatform extends PlatformInterface {
+abstract base class AudioRecorderVtPluginPlatform extends PlatformInterface {
   /// Constructs a AudioRecorderVtPluginPlatform.
   AudioRecorderVtPluginPlatform() : super(token: _token);
 

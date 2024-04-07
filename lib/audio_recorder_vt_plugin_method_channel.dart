@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'audio_recorder_vt_plugin_platform_interface.dart';
 
 /// An implementation of [AudioRecorderVtPluginPlatform] that uses method channels.
-class MethodChannelAudioRecorderVtPlugin extends AudioRecorderVtPluginPlatform {
+final class MethodChannelAudioRecorderVtPlugin extends AudioRecorderVtPluginPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('audio_recorder_vt_plugin');

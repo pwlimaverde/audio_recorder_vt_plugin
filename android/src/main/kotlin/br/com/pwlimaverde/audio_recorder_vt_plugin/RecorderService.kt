@@ -63,7 +63,7 @@ class RecorderService : Service() {
                     START_STICKY
                 }
                 ACTION_START -> {
-                    var file = createFile()
+                    val file = createFile()
                     startRecord(file)
                     START_STICKY
                 }
@@ -117,7 +117,7 @@ class RecorderService : Service() {
     }
 
     private fun createFile(): File {
-        var dir = File(getExternalFilesDir(null), "/files_cript")
+        val dir = File(getExternalFilesDir(null), "/files_cript")
         if (!dir.exists()) {
             dir.mkdir()
         }
